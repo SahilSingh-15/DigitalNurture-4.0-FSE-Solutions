@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Event Portal</title>
+</head>
+<body>
+    <input type="text" id="phone" placeholder="Phone Number" onblur="validatePhone()"><br><br>
+
+    <select id="eventType" onchange="displayEventFee()">
+        <option value="">Select Event Type</option>
+        <option value="concert">Concert</option>
+        <option value="workshop">Workshop</option>
+        <option value="seminar">Seminar</option>
+    </select><br><br>
+
+    <button onclick="confirmSubmit()">Submit</button><br><br>
+
+    <img src="event.jpg" alt="Event" ondblclick="enlargeImage()"><br><br>
+
+    <textarea id="feedback" onkeyup="countCharacters()"></textarea>
+
+    <script>
+        function validatePhone() {
+            const phone = document.getElementById("phone").value;
+            if (!phone.match(/^\d{10}$/)) {
+                alert("Please enter a valid phone number.");
+            }
+        }
+
+        function displayEventFee() {
+            const eventType = document.getElementById("eventType").value;
+            let fee = "";
+            switch(eventType) {
+                case "concert":
+                    fee = "Concert fee: $50";
+                    break;
+                case "workshop":
+                    fee = "Workshop fee: $30";
+                    break;
+                case "seminar":
+                    fee = "Seminar fee: $20";
+                    break;
+                default:
+                    fee = "";
+            }
+            alert(fee);
+        }
+
+        function confirmSubmit() {
+            alert("Form submitted!");
+        }
+
+        function enlargeImage() {
+            alert("Image enlarged!");
+        }
+
+        function countCharacters() {
+            const feedback = document.getElementById("feedback").value;
+            console.log("Character count: " + feedback.length);
+        }
+    </script>
+</body>
+</html>

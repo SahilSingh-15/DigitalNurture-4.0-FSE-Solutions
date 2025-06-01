@@ -1,0 +1,29 @@
+/* Reset margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style all <h2> elements */
+h2 {
+    color: #2c3e50;
+}
+
+/* Style element with ID mainHeader */
+#mainHeader {
+    font-size: 28px;
+    background-color: #dff9fb;
+}
+
+/* Style event containers */
+.eventCard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Grouped style for h3 and p */
+h3, p {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}

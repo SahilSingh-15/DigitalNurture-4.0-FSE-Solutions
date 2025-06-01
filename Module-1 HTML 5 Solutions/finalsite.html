@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Event Portal</title>
+    <style>
+        /* Internal CSS for styling */
+        #welcomeBanner {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .highlight {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Section -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+        <a href="help.html" target="_blank">Help</a>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main>
+        <section id="home">
+            <div id="welcomeBanner">
+                Welcome to the Community Event Portal!
+                <span class="highlight">Special Offer!</span>
+            </div>
+        </section>
+
+        <section id="events">
+            <h2>Events</h2>
+            <!-- Image Gallery -->
+            <table>
+                <tr>
+                    <td><img src="event1.jpg" alt="Event 1" title="Event 1" class="eventImage"></td>
+                    <td><img src="event2.jpg" alt="Event 2" title="Event 2" class="eventImage"></td>
+                    <td><img src="event3.jpg" alt="Event 3" title="Event 3" class="eventImage"></td>
+                </tr>
+                <tr>
+                    <td><img src="event4.jpg" alt="Event 4" title="Event 4" class="eventImage"></td>
+                    <td><img src="event5.jpg" alt="Event 5" title="Event 5" class="eventImage"></td>
+                    <td><img src="event6.jpg" alt="Event 6" title="Event 6" class="eventImage"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <!-- Event Registration Form -->
+            <form onsubmit="return confirmRegistration()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required autofocus><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required><br><br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br><br>
+
+                <label for="eventType">Event Type:</label>
+                <select id="eventType" name="eventType" onchange="displayEventFee()">
+                    <option value="">Select Event Type</option>
+                    <option value="concert">Concert</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="seminar">Seminar</option>
+                </select><br><br>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Your Message" onkeyup="countCharacters()"></textarea><br><br>
+
+                <input type="submit" value="Register">
+                <output id="confirmationMessage"></output>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2023 Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for handling events and other functionalities
+        function confirmRegistration() {
+            document.getElementById("confirmationMessage").textContent = "Registration confirmed!";
+            return false;
+        }
+
+        function displayEventFee() {
+            const eventType = document.getElementById("eventType").value;
+            let fee = "";
+            switch(eventType) {
+                case "concert":
+                    fee = "Concert fee: $50";
+                    break;
+                case "workshop":
+                    fee = "Workshop fee: $30";
+                    break;
+                case "seminar":
+                    fee = "Seminar fee: $20";
+                    break;
+                default:
+                    fee = "";
+            }
+            alert(fee);
+        }
+
+        function countCharacters() {
+            const message = document.getElementById("message").value;
+            console.log("Character count: " + message.length);
+        }
+
+        // Geolocation
+        document.getElementById("findEvents").addEventListener("click", function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, { enableHighAccuracy: true });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+
+        function showPosition(position) {
+            alert("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        // Local Storage
+        document.getElementById("eventType").addEventListener("change", function() {
+            localStorage.setItem("eventType", this.value);
+        });
+
+        window.onload = function() {
+            const savedEventType = localStorage.getItem("eventType");
+            if (savedEventType) {
+                document.getElementById("eventType").value = savedEventType;
+            }
+        };
+
+        document.getElementById("clearPreferences").addEventListener("click", function() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("Preferences cleared!");
+        });
+
+        // Video Invite
+        document.getElementById("eventVideo").addEventListener("canplay", function() {
+            alert("Video ready to play");
+        });
+
+        window.addEventListener("beforeunload", function(e) {
+            const form = document.querySelector("form");
+            if (form && !form.checkValidity()) {
+                e.preventDefault();
+                e.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+            }
+        });
+    </script>
+</body>
+</html>

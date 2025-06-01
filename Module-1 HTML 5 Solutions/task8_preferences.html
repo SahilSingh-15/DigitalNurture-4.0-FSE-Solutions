@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Event Portal</title>
+</head>
+<body>
+    <select id="eventType" onchange="saveEventType()">
+        <option value="">Select Event Type</option>
+        <option value="concert">Concert</option>
+        <option value="workshop">Workshop</option>
+        <option value="seminar">Seminar</option>
+    </select><br><br>
+
+    <button onclick="clearPreferences()">Clear Preferences</button>
+
+    <script>
+        function saveEventType() {
+            const eventType = document.getElementById("eventType").value;
+            localStorage.setItem("eventType", eventType);
+        }
+
+        window.onload = function() {
+            const savedEventType = localStorage.getItem("eventType");
+            if (savedEventType) {
+                document.getElementById("eventType").value = savedEventType;
+            }
+        };
+
+        function clearPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("Preferences cleared!");
+        }
+    </script>
+</body>
+</html>

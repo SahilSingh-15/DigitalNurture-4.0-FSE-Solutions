@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debugging Example</title>
+  <style>
+    #box {
+      width: 300px;
+      height: 150px;
+      background-color: lightblue;
+      margin: 20px;
+    }
+  </style>
+  <script>
+    function debugLog() {
+      let message = "Debugging with DevTools!";
+      console.log(message);
+      debugger; // Trigger JS breakpoint
+      document.getElementById("box").innerText = message;
+    }
+  </script>
+</head>
+<body onload="debugLog()">
+  <div id="box"></div>
+</body>
+</html>

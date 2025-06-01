@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Event Portal</title>
+</head>
+<body>
+    <form onsubmit="return confirmRegistration()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required autofocus><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="eventType">Event Type:</label>
+        <select id="eventType" name="eventType">
+            <option value="">Select Event Type</option>
+            <option value="concert">Concert</option>
+            <option value="workshop">Workshop</option>
+            <option value="seminar">Seminar</option>
+        </select><br><br>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" placeholder="Your Message"></textarea><br><br>
+
+        <input type="submit" value="Register">
+        <output id="confirmationMessage"></output>
+    </form>
+
+    <script>
+        function confirmRegistration() {
+            document.getElementById("confirmationMessage").textContent = "Registration confirmed!";
+            return false;
+        }
+    </script>
+</body>
+</html>

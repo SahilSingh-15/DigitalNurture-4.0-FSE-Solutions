@@ -1,0 +1,5 @@
+1. Open Chrome DevTools (F12 or right-click > Inspect).
+2. Use the device toolbar to simulate mobile screens.
+3. Navigate to the 'Elements' tab to view and modify styles.
+4. Check 'Network' tab to verify CSS is loading.
+5. Use 'Console' for JavaScript errors.
